@@ -22,10 +22,16 @@ User.init(
       // define a username column
       username: {
         type: DataTypes.STRING,
-        allowNull: false
-      },
-      // define a password column
-      password: {
+        allowNull: false,
+        //username must be unique (not already taken).
+        unique: true,
+        validate: {
+          // this means the username must be at least one character long
+          len: [1]
+        }
+        },
+        // define a password column
+        password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -36,7 +42,7 @@ User.init(
     },
   //The second object .init() accepts configures certain options for the table.
   {
-    // TABLE CONFIGURATION OPTIONS GO HERE (https://sequelize.org/v5/manual/models-definition.html#configuration))
+    // TABLE CONFIGURATION OPTIONS GO HERE 
 
     // pass in our imported sequelize connection (the direct connection to our database)
     sequelize,

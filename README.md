@@ -68,3 +68,5 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 
 
 http://localhost:3001/api/users/login
+
+http://localhost:3001/api/posts/1

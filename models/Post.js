@@ -20,7 +20,10 @@ Post.init(
     // no limit is being set as a blog post can be long 
     post_content: {
       type: DataTypes.TEXT,
-      allowNull: true
+          allowNull: false,
+          validate: {
+            len: [1]
+          }
     },
     // identifies the user who created the post by using the User model's id column 
     user_id: {

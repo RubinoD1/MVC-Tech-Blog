@@ -51,23 +51,27 @@ router.get('/:id', (req, res) => {
         });
   });
 
-// POST /api/users - create a user **email is not currently set as a key/value 13.1.6 for example**
+// POST /api/users - create a user 
 router.post('/', (req, res) => {
     // expects {username: 'Diane', password: 'password1234'}
     User.create({
       username: req.body.username,
       password: req.body.password
-    })
-    .then(dbUserData => {
+  })
+  .then(dbUserData => {
       req.session.save(() => {
-        req.session.user_id = dbUserData.id;
-        req.session.username = dbUserData.username;
-        req.session.loggedIn = true;
-    
-        res.json(dbUserData);
+          req.session.user_id = dbUserData.id;
+          req.session.username = dbUserData.username;
+          req.session.loggedIn = true;
+
+          res.json(dbUserData);
       });
-    })
+  })
+  .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
   });
+});
 
   router.post('/login', (req, res) => {
     // expects {username: 'Diane', password: 'password1234'}

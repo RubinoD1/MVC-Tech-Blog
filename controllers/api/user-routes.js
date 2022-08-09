@@ -101,7 +101,15 @@ router.post('/', (req, res) => {
 
 //logout route 
 router.post('/logout', (req, res) => {
-
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      //after session as been successfully destroyed, send back a 204 (No content) status code
+      res.status(204).end();
+    });
+  }
+  else {
+    res.status(404).end();
+  }
 });
 
 // PUT /api/users/1

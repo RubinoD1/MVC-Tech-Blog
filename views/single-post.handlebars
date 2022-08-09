@@ -10,6 +10,8 @@
   </div>
 </article>
 
+<!--only if logged in display the comment form -->
+{{#if loggedIn}}
 <form class="comment-form">
   <div>
     <textarea name="comment-body"></textarea>
@@ -17,9 +19,9 @@
 
   <div>
     <button type="submit">add comment</button>
-    
   </div>
 </form>
+{{/if}}
 
 <div class="comments">
   {{#each post.comments}}
@@ -34,4 +36,7 @@
   {{/each}}
 </div>
 
+<!--only if logged in load the comment.js file -->
+{{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
+{{/if}}

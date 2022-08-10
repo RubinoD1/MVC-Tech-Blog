@@ -1,10 +1,6 @@
-<ol class="post-list">
-  {{#each posts as |post|}}
-  <li>
-    {{> post-info post }}
-  </li>
-  {{/each}}
-</ol>
+
+{{> post-info post }}
+
 
 <!--only if logged in display the comment form -->
 {{#if loggedIn}}

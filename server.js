@@ -17,12 +17,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const sess = {
-  secret: 'Super secret secret',
+  secret: process.env.DB_SECRET,
   cookie: {},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
-    db: sequelize
+      db: sequelize,
+      checkExpirationInterval: 1000 * 60 * 10, // check every 10 minutes
+      expiration: 1000 * 60 * 20// session will expire after 20 minutes if idle
   })
 };
 

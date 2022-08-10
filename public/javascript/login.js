@@ -41,14 +41,12 @@ async function signupFormHandler(event) {
             }
         });
 
-    // check the response status
-    if (response.ok) {
-      //when successfully logged in send user to dashboard 
-      document.location.replace('/dashboard');
-    } else {
-      alert(response.statusText);
+        if (response.ok) {
+            document.location.replace('/dashboard');
+        } else {
+            alert(response.statusText);
+        }
     }
-  }
 };
 
 

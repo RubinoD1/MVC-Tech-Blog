@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // get all users
 //retrieve all posts in the database
@@ -80,7 +81,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.post('/', (req, res) => {
+  router.post('/', withAuth, (req, res) => {
     // expects {title: 'Blog post title', post_content: 'This is my blog post.', user_id: 1}
     Post.create({
       title: req.body.title,
@@ -94,7 +95,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.put('/:id', (req, res) => {
+  router.put('/:id', withAuth, (req, res) => {
     Post.update(
       {
         title: req.body.title
@@ -118,7 +119,7 @@ router.get('/', (req, res) => {
       });
   });
 
-  router.delete('/:id', (req, res) => {
+  router.delete('/:id', withAuth, (req, res) => {
     Post.destroy({
       where: {
         id: req.params.id
